@@ -1,5 +1,4 @@
 import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
 
 
@@ -13,13 +12,8 @@ df.rename(columns={x: to_pep8(x) for x in df.columns}, inplace=True)
 column = to_pep8(input())
 
 fig, ax = plt.subplots()
+ax.pie(df[column].value_counts(),
+       labels=df[column].value_counts().index.to_list(),
+       autopct='%1.1f%%')
 
-fig = sns.kdeplot(data=df,
-                  x=column,
-                  hue='покупательская_активность',
-                  fill=True,
-                  legend=True)
-
-plt.ylabel(None)
-fig = ax.get_figure()
-fig.savefig('target_2_4.png')
+fig.savefig('target_2_5.png')
